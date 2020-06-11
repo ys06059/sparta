@@ -63,10 +63,11 @@
 
         }
         
-        .rate {
+        .dollar {
             color: blue;
-            font-weight: bold;
+        
         }
+        
         
 
 
@@ -75,39 +76,36 @@
 
     <script>
         
-
             $(document).ready(function(){
                 $.ajax({
                     type: "GET",
                     url: "https://api.manana.kr/exchange/rate.json",
                     data: {},
                     success: function (response) {
-                        let exrate = response[1]["rate"];
-                        let temp_html = <h4> 달러·원 환율: ${exrate} </h4>
-                        $('#exchange-rate').append(temp_html);
+                        let rate  = response[1]["rate"];
+                        $('#wd').text(rate)
                     }
                 })
             });
-
     
 
-    function hey() {
-    let name = $('#basic-addon1').val();
-    let quantity = $('#inputGroupSelect01').val();
-    let addess = $('#basic-addon2').val();
-    let phone = $('#basic-addon3').val();
+    function order() {
+    let name = $('#name').val();
+    let count = $('#count').val();
+    let addess = $('#address').val();
+    let phone = $('#phone').val();
 
     if (name == '') {
-    alert('이름을 입력하세요')
-    } else if (quantity == '') {
-    alert('수량을 입력하세요')
+        alert('이름을 입력하세요')
+    } else if (count == '--수량을 선택하세요--') {
+        alert('수량을 입력하세요')
     } else if (address == '') {
-    alert('주소를 입력하세요')
+        alert('주소를 입력하세요')
     } else if (phone == '') {
-    alert('전화번호를 입력하세요')
+        alert('전화번호를 입력하세요')
     } else {
 
-    alert('주문이 완료되었습니다')
+        alert('주문이 완료되었습니다')
     }
 
     }
@@ -124,22 +122,24 @@
         <div class="goods_explanation">
             <h1>아스파라거스 <span class="price">가격:1kg/7000원</span></h1>
             <h6>아스파라거스 티켓팅에 실패해도 아스파라거스 베이컨 말이는 먹고 싶어! 를 외치시는 분들을 위한 마지막 수량입니다. 25일 오전 10시에 최종 판매가 시작됩니다.</h6>
-       <p id=exchange-rate>   </p>
+
         </div>
+
+        <div class='dollar'>환율: <span id="wd">1000</span>원/달러</div>
         ​
         <div class="information">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">주문자 이름</span>
+                    <span class="input-group-text" id="basic-addon3">주문자 이름</span>
                 </div>
-                <input type="text" class="form-control" placeholder="" aria-label="Username"
-                    aria-describedby="basic-addon1">
+                <input type="text" class="form-control" id='name' placeholder="" aria-label="Username"
+                    aria-describedby="basic-addon3">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <label class="input-group-text" for="inputGroupSelect01">수량</label>
                 </div>
-                <select class="custom-select" id="inputGroupSelect01">
+                <select class="custom-select" id="count">
                     <option selected>--수량을 선택하세요--</option>
                     <option value="1">1kg</option>
                     <option value="2">2kg</option>
@@ -148,23 +148,23 @@
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon2">주소</span>
+                    <span class="input-group-text" id="basic-addon3">주소</span>
                 </div>
-                <input type="text" class="form-control" placeholder="" aria-label="Username"
-                    aria-describedby="basic-addon2">
+                <input type="text" class="form-control" id="address" placeholder="" aria-label="Username"
+                    aria-describedby="basic-addon3">
             </div>
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon3">전화번호</span>
                 </div>
-                <input type="text" class="form-control" placeholder="" aria-label="Username"
+                <input type="text" class="form-control" id="phone" placeholder="" aria-label="Username"
                     aria-describedby="basic-addon3">
             </div>
         </div>
         ​
         <div class="order">
             <p class="lead">
-                <a onclick="hey()" class="btn btn-primary btn-lg" href="#" role="button">주문하기</a>
+                <a onclick="order()" class="btn btn-primary btn-lg" href="#" role="button">주문하기</a>
             </p>
         </div>
         ​
